@@ -10,13 +10,10 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         User::factory(10)->create()->each(function ($user) {
-            \App\Models\TaskModel::factory(rand(1,5))->create([
+            \App\Models\TaskModel::factory(rand(1, 5))->create([
                 'user_id' => $user->id,
             ]);
         });
