@@ -7,19 +7,19 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up(): void
-    {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+{
+    Schema::create('tasks', function (Blueprint $table) {
+        $table->id();
+        $table->string('title', 255); 
+        $table->text('description')->nullable(); 
+        $table->boolean('completed')->default(false); 
 
-            $table->string('title', 255); 
+        // Añade esta línea: crea la columna y la vincula con la tabla usuarios
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-            $table->text('description')->nullable(); 
-
-            $table->boolean('completed')->default(false); 
-
-            $table->timestamps();
-        });
-    }
+        $table->timestamps();
+    });
+}
 
     public function down(): void
     {
